@@ -1,0 +1,21 @@
+{
+  "name": "mern-todos",
+  "version": "1.0.0",
+  "description": "Learning MERN stack with a simple TODO app",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Andrew Gregory",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
+    "mongoose": "^5.4.14",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.11.0"
+  }
+}
