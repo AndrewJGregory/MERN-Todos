@@ -5,15 +5,15 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const users = require("./routes/api/users");
 
-// mongoose
-//   .connect(db, { useNewUrlParser: true })
-//   .then(() => console.log("Successfully connected to db"))
-//   .catch(err => console.log(err));
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log("Successfully connected to db"))
+  .catch(err => console.log(err));
 
-app.get("/", (req, res) => res.send("test!"));
-app.use("/api/users", users);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use("/api/users", users);
+app.get("/", (req, res) => res.send("test!"));
 
 const port = process.env.PORT || 5000;
 
