@@ -4,13 +4,13 @@ const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 
 router.post("/signup", (req, res) => {
-  User.findOne({ username: req.body.username }).then(user => {
+  const { username, password } = req.body;
+  User.findOne({ username }).then(user => {
     if (user) {
       return res
         .status(400)
         .json({ username: "This username has already been taken" });
     } else {
-      const { username, password } = req.body;
       const newUser = new User({
         username,
         password,
@@ -26,6 +26,24 @@ router.post("/signup", (req, res) => {
         });
       });
     }
+  });
+});
+
+router.post("/signin", (req, res) => {
+  const { username, password } = req.body;
+  User.findOne({ username }).then(user => {
+    if (!user) {
+      return res
+        .status(404)
+        .json({ username: "We could not find a user with that username." });
+    }
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+        res.json({ msg: "success!" });
+      } else {
+        return res.status(400).json({ password: "incorrect password" });
+      }
+    });
   });
 });
 
