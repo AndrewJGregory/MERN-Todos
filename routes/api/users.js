@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const passport = require("passport");
 
 router.post("/signup", (req, res) => {
   const { username, password } = req.body;
@@ -30,7 +31,7 @@ router.post("/signup", (req, res) => {
                 keys.secretOrKey,
                 { expiresIn: 3600 },
                 (err, token) => {
-                  res.json({ success: true, token: `Bearer: ${token}` });
+                  res.json({ success: true, token: "Bearer " + token });
                 },
               );
             })
@@ -66,5 +67,16 @@ router.post("/signin", (req, res) => {
     });
   });
 });
+
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      username: req.user.username,
+    });
+  },
+);
 
 module.exports = router;
