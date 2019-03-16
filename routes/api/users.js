@@ -5,9 +5,15 @@ const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
+const validateSignupInput = require("../../validation/signup");
+const validateSigninInput = require("../../validation/signin");
 
 router.post("/signup", (req, res) => {
   const { username, password } = req.body;
+  const { errors, isValid } = validateSignupInput({ username, password });
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   User.findOne({ username }).then(user => {
     if (user) {
       return res
@@ -44,6 +50,10 @@ router.post("/signup", (req, res) => {
 
 router.post("/signin", (req, res) => {
   const { username, password } = req.body;
+  const { errors, isValid } = validateSigninInput({ username, password });
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   User.findOne({ username }).then(user => {
     if (!user) {
       return res
