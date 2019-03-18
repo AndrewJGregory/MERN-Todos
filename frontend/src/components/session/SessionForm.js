@@ -17,13 +17,15 @@ export default function SessionForm({
   function handleSubmit(e) {
     e.preventDefault();
     submit({ username, password }).then(res => {
-      history.push("/todos");
+      if (res === "success") {
+        history.push("/todos");
+      }
     });
   }
 
-  // useEffect(() => {
-  //   clearErrors();
-  // }, [history.location.pathname]);
+  useEffect(() => {
+    clearErrors();
+  }, [history.location.pathname]);
 
   useEffect(() => {
     const validPaths = ["/signin", "/signup"];
