@@ -30,7 +30,6 @@ export default function SessionForm({
   useEffect(() => {
     const validPaths = ["/signin", "/signup"];
     if (!validPaths.includes(history.location.pathname)) {
-      console.log("fired");
       history.push("/signin");
     }
   }, []);
