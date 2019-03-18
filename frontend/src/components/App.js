@@ -11,7 +11,7 @@ export default function App() {
       <ProtectedRoute path="/todos" component={Main} />
       <AuthRoute path="/signin" component={SessionFormContainer} />
       <AuthRoute path="/signup" component={SessionFormContainer} />
-      <AuthRoute path="/" component={Main} />
+      <AuthRoute path="/" component={SessionFormContainer} />
     </Switch>
   );
 }

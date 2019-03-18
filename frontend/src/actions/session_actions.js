@@ -27,19 +27,28 @@ export const signup = user => dispatch =>
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
       dispatch(receiveCurrentUser(jwt_decode(token)));
+      return "success";
     },
-    err => dispatch(receiveErrors(err.response.data)),
+    err => {
+      dispatch(receiveErrors(err.response.data));
+      return "fail";
+    },
   );
 
 export const signin = user => dispatch =>
-  APIUtil.signin(user)
-    .then(res => {
+  APIUtil.signin(user).then(
+    res => {
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
       dispatch(receiveCurrentUser(jwt_decode(token)));
-    })
-    .catch(err => dispatch(receiveErrors(err.response.data)));
+      return "success";
+    },
+    err => {
+      dispatch(receiveErrors(err.response.data));
+      return "fail";
+    },
+  );
 
 export const logout = () => dispatch => {
   localStorage.removeItem("jwtToken");

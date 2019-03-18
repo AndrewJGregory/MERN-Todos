@@ -1,9 +1,9 @@
+import NavBar from "./navbar";
 import { connect } from "react-redux";
 import { logout } from "../../actions/session_actions";
-import NavBar from "./navbar";
 
-const mapStateToProps = ({ session: { isAuthenticated } }) => ({
-  loggedIn: isAuthenticated,
+const mapStateToProps = ({ session: { user } }) => ({
+  loggedIn: Boolean(user),
 });
 
 export default connect(
