@@ -13,15 +13,7 @@ export default function SessionForm({
 }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    submit({ username, password }).then(res => {
-      if (res === "success") {
-        history.push("/todos");
-      }
-    });
-  }
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     clearErrors();
@@ -34,6 +26,17 @@ export default function SessionForm({
     }
   }, []);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    submit({ username, password }).then(res => {
+      setLoading(false);
+      if (res === "success") {
+        history.push("/todos");
+      }
+    });
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -43,6 +46,7 @@ export default function SessionForm({
         placeholder="Username"
         autoComplete="username"
         required
+        disabled={isLoading}
       />
       {errors.username}
       <br />
@@ -53,9 +57,10 @@ export default function SessionForm({
         placeholder="Password"
         autoComplete="current-password"
         required
+        disabled={isLoading}
       />
       {errors.password}
-      <button>{btnText}</button>
+      <button disabled={isLoading}>{btnText}</button>
       <Link to={`/${otherText}`}>{otherText}</Link>
     </form>
   );
