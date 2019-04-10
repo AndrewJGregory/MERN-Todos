@@ -30,9 +30,8 @@ export default function SessionForm({
     e.preventDefault();
     setLoading(true);
     submit({ username, password }).then(res => {
-      setLoading(false);
-      if (res === "success") {
-        history.push("/todos");
+      if (res === "fail") {
+        setLoading(false);
       }
     });
   }
