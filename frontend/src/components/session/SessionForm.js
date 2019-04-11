@@ -74,5 +74,5 @@ SessionForm.propTypes = {
   btnText: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
   clearErrors: PropTypes.func.isRequired,
-  errors: PropTypes.array.isRequired,
+  errors: PropTypes.object.isRequired,
 };
