@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
+
 import { Link } from "react-router-dom";
 
-export default class NavBar extends Component {
+export default class Navbar extends Component {
   logoutUser = e => {
     e.preventDefault();
     this.props.logout();
