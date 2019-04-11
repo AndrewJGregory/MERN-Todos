@@ -1,0 +1,26 @@
+.session-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.session-form__header {
+  font-family: sans-serif;
+  margin-bottom: 20px;
+}
+
+.session-form__btn {
+  margin-top: 20px;
+}
+
+.session-form__link {
+  margin-top: 10px;
+}
+
+.session-form__error {
+  margin-top: 10px;
+  color: red;
+  font-family: sans-serif;
+}

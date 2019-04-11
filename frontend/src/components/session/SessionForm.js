@@ -40,8 +40,10 @@ export default function SessionForm({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="session-form" onSubmit={handleSubmit}>
+      <h1 className="session-form__header">Welcome to the MERN Todos App!</h1>
       <input
+        className="session-form__input"
         type="text"
         value={username}
         onChange={e => setUsername(e.currentTarget.value)}
@@ -50,9 +52,10 @@ export default function SessionForm({
         required
         disabled={isLoading}
       />
-      {errors.username}
+      <p className="session-form__error">{errors.username}</p>
       <br />
       <input
+        className="session-form__input"
         type="password"
         value={password}
         onChange={e => setPassword(e.currentTarget.value)}
@@ -61,8 +64,13 @@ export default function SessionForm({
         required
         disabled={isLoading}
       />
-      {errors.password}
-      <Link to={`/${otherUrl}`}>{otherBtnText}</Link>
+      <p className="session-form__error">{errors.password}</p>
+      <button className="session-form__btn" disabled={isLoading}>
+        {btnText}
+      </button>
+      <Link className="session-form__link" to={`/${otherUrl}`}>
+        {otherBtnText}
+      </Link>
     </form>
   );
 }
