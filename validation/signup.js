@@ -19,7 +19,7 @@ module.exports = ({ username, password }) => {
   }
 
   if (!Validator.isLength(password, { min: 8, max: 30 })) {
-    errors.password = "Password must be at least 8 cahracters";
+    errors.password = "Password must be at least 8 characters";
   }
 
   return {
