@@ -1,3 +1,5 @@
+import "./session_form.css";
+
 import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
@@ -5,9 +7,10 @@ import PropTypes from "prop-types";
 
 export default function SessionForm({
   submit,
-  btnText,
   history,
-  otherText,
+  btnText,
+  otherBtnText,
+  otherUrl,
   errors,
   clearErrors,
 }) {
@@ -59,16 +62,17 @@ export default function SessionForm({
         disabled={isLoading}
       />
       {errors.password}
-      <button disabled={isLoading}>{btnText}</button>
-      <Link to={`/${otherText}`}>{otherText}</Link>
+      <Link to={`/${otherUrl}`}>{otherBtnText}</Link>
     </form>
   );
 }
 
 SessionForm.propTypes = {
   submit: PropTypes.func.isRequired,
+  otherUrl: PropTypes.string.isRequired,
+  otherBtnText: PropTypes.string.isRequired,
   btnText: PropTypes.string.isRequired,
-  otherText: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
   clearErrors: PropTypes.func.isRequired,
+  errors: PropTypes.array.isRequired,
 };

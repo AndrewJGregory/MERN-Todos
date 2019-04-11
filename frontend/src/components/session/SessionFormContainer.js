@@ -8,8 +8,15 @@ const mapStateToProps = ({ errors: { session } }, ownProps) => {
   const btnText = ownProps.location.pathname.includes("/signup")
     ? "Sign up"
     : "Sign in";
-  const otherText = btnText === "Sign in" ? "signup" : "signin";
-  return { errors: session, btnText, otherText };
+  let otherBtnText, otherUrl;
+  if (btnText === "Sign in") {
+    otherBtnText = "Don't have an account? Sign Up";
+    otherUrl = "signup";
+  } else {
+    otherBtnText = "Already have an account? Sign In";
+    otherUrl = "signin";
+  }
+  return { errors: session, otherBtnText, otherUrl, btnText };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
