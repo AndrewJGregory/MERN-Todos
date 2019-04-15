@@ -13,7 +13,15 @@ router.post("/", passport.authenticate("jwt", { session: false }), create);
 function index(req, res) {
   Todo.find()
     .sort({ date: -1 })
-    .then(todos => res.json(todos))
+    .then(todos => {
+      User.find({ _id: { $in: todos.map(todo => todo.user) } }).then(users => {
+        const sanitizedUsers = users.map(({ username, _id }) => ({
+          username,
+          _id,
+        }));
+        return res.json({ todos, users: sanitizedUsers });
+      });
+    })
     .catch(err => res.status(404).json(err));
 }
 
