@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const Todo = require("../../models/Todo");
 const validateTodoInput = require("../../validation/todos");
+const normalize = require("../../config/normalize");
 
 router.get("/", index);
 router.get("/user/:user_id", userShow);
@@ -19,7 +20,10 @@ function index(req, res) {
           username,
           _id,
         }));
-        return res.json({ todos, users: sanitizedUsers });
+        return res.json({
+          todos: normalize(todos),
+          users: normalize(sanitizedUsers),
+        });
       });
     })
     .catch(err => res.status(404).json(err));
