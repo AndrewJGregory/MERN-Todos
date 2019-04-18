@@ -1,6 +1,8 @@
+import "./session_form.css";
+
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import React, { useEffect, useState } from "react";
 
-import { Form } from "reactstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -39,52 +41,44 @@ export default function SessionForm({
   }
 
   return (
-    //     <Form>
-    //   <Form.Group controlId="formBasicEmail">
-    //     <Form.Label>Email address</Form.Label>
-    //     <Form.Control type="email" placeholder="Enter email" />
-    //     <Form.Text className="text-muted">
-    //       We'll never share your email with anyone else.
-    //     </Form.Text>
-    //   </Form.Group>
-
-    //   <Form.Group controlId="formBasicPassword">
-    //     <Form.Label>Password</Form.Label>
-    //     <Form.Control type="password" placeholder="Password" />
-    //   </Form.Group>
-    //   <Form.Group controlId="formBasicChecbox">
-    //     <Form.Check type="checkbox" label="Check me out" />
-    //   </Form.Group>
-    //   <Button variant="primary" type="submit">
-    //     Submit
-    //   </Button>
-    // </Form>;
-    <Form onSubmit={handleSubmit}>
+    <>
       <h1>Welcome to the MERN Todos App!</h1>
-      <input
-        type="text"
-        value={username}
-        onChange={e => setUsername(e.currentTarget.value)}
-        placeholder="Username"
-        autoComplete="username"
-        required
-        disabled={isLoading}
-      />
-      <p>{errors.username}</p>
-      <br />
-      <input
-        type="password"
-        value={password}
-        onChange={e => setPassword(e.currentTarget.value)}
-        placeholder="Password"
-        autoComplete="current-password"
-        required
-        disabled={isLoading}
-      />
-      <p>{errors.password}</p>
-      <button disabled={isLoading}>{btnText}</button>
-      <Link to={`/${otherUrl}`}>{otherBtnText}</Link>
-    </Form>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label>
+            Username
+            <Input
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.currentTarget.value)}
+              placeholder="Username"
+              autoComplete="username"
+              required
+              disabled={isLoading}
+            />
+          </Label>
+        </FormGroup>
+        <p className="session-form__error">{errors.username}</p>
+        <FormGroup>
+          <Label>
+            Password
+            <Input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.currentTarget.value)}
+              placeholder="Password"
+              autoComplete="current-password"
+              required
+              disabled={isLoading}
+            />
+          </Label>
+        </FormGroup>
+        <p className="session-form__error">{errors.password}</p>
+        <Button disabled={isLoading}>{btnText}</Button>
+        <br />
+        <Link to={`/${otherUrl}`}>{otherBtnText}</Link>
+      </Form>
+    </>
   );
 }
 
