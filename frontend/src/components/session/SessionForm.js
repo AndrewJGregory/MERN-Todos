@@ -1,7 +1,6 @@
-import "./session_form.css";
-
 import React, { useEffect, useState } from "react";
 
+import { Form } from "reactstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -40,10 +39,29 @@ export default function SessionForm({
   }
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h1 className="session-form__header">Welcome to the MERN Todos App!</h1>
+    //     <Form>
+    //   <Form.Group controlId="formBasicEmail">
+    //     <Form.Label>Email address</Form.Label>
+    //     <Form.Control type="email" placeholder="Enter email" />
+    //     <Form.Text className="text-muted">
+    //       We'll never share your email with anyone else.
+    //     </Form.Text>
+    //   </Form.Group>
+
+    //   <Form.Group controlId="formBasicPassword">
+    //     <Form.Label>Password</Form.Label>
+    //     <Form.Control type="password" placeholder="Password" />
+    //   </Form.Group>
+    //   <Form.Group controlId="formBasicChecbox">
+    //     <Form.Check type="checkbox" label="Check me out" />
+    //   </Form.Group>
+    //   <Button variant="primary" type="submit">
+    //     Submit
+    //   </Button>
+    // </Form>;
+    <Form onSubmit={handleSubmit}>
+      <h1>Welcome to the MERN Todos App!</h1>
       <input
-        className="session-form__input"
         type="text"
         value={username}
         onChange={e => setUsername(e.currentTarget.value)}
@@ -52,10 +70,9 @@ export default function SessionForm({
         required
         disabled={isLoading}
       />
-      <p className="session-form__error">{errors.username}</p>
+      <p>{errors.username}</p>
       <br />
       <input
-        className="session-form__input"
         type="password"
         value={password}
         onChange={e => setPassword(e.currentTarget.value)}
@@ -64,14 +81,10 @@ export default function SessionForm({
         required
         disabled={isLoading}
       />
-      <p className="session-form__error">{errors.password}</p>
-      <button className="session-form__btn" disabled={isLoading}>
-        {btnText}
-      </button>
-      <Link className="session-form__link" to={`/${otherUrl}`}>
-        {otherBtnText}
-      </Link>
-    </form>
+      <p>{errors.password}</p>
+      <button disabled={isLoading}>{btnText}</button>
+      <Link to={`/${otherUrl}`}>{otherBtnText}</Link>
+    </Form>
   );
 }
 
