@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .session-form__header {
@@ -20,7 +19,5 @@
 }
 
 .session-form__error {
-  margin-top: 10px;
   color: red;
-  font-family: sans-serif;
 }

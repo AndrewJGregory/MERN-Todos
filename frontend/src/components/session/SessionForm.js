@@ -3,6 +3,7 @@ import "./session_form.css";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import React, { useEffect, useState } from "react";
 
+import FooterLinks from "../footer/FooterLinks";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -43,7 +44,7 @@ export default function SessionForm({
   return (
     <>
       <h1>Welcome to the MERN Todos App!</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form className="session-form" onSubmit={handleSubmit}>
         <FormGroup>
           <Label>
             Username
@@ -78,6 +79,7 @@ export default function SessionForm({
         <br />
         <Link to={`/${otherUrl}`}>{otherBtnText}</Link>
       </Form>
+      <FooterLinks />
     </>
   );
 }
