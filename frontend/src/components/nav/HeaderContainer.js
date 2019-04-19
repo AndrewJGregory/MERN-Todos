@@ -2,11 +2,9 @@ import Header from "./Header";
 import { connect } from "react-redux";
 import { logout } from "../../actions/session_actions";
 
-const mapStateToProps = ({ session: { user } }) => ({
-  loggedIn: Boolean(user),
-});
+const mdp = dispatch => ({ logout: () => dispatch(logout()) });
 
 export default connect(
-  mapStateToProps,
-  { logout },
+  null,
+  mdp,
 )(Header);
