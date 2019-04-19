@@ -1,4 +1,4 @@
-import Navbar from "./Navbar";
+import Header from "./Header";
 import { connect } from "react-redux";
 import { logout } from "../../actions/session_actions";
 
@@ -9,4 +9,4 @@ const mapStateToProps = ({ session: { user } }) => ({
 export default connect(
   mapStateToProps,
   { logout },
-)(Navbar);
+)(Header);

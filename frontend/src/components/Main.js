@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 
-import NavbarContainer from "./nav/NavbarContainer";
+import HeaderContainer from "./nav/HeaderContainer";
 import TodoIndexContainer from "./todos/TodoIndexContainer";
 
 export default function Main() {
   return (
     <Fragment>
-      <NavbarContainer />
+      <HeaderContainer />
       <TodoIndexContainer />
     </Fragment>
   );
