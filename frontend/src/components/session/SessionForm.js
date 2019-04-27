@@ -22,14 +22,14 @@ export default function SessionForm({
 
   useEffect(() => {
     clearErrors();
-  }, [history.location.pathname]);
+  }, [clearErrors]);
 
   useEffect(() => {
     const validPaths = ["/signin", "/signup"];
     if (!validPaths.includes(history.location.pathname)) {
       history.push("/signin");
     }
-  }, []);
+  }, [history]);
 
   function handleSubmit(e) {
     e.preventDefault();
