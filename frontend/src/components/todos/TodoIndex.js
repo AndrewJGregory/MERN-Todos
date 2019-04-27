@@ -6,7 +6,7 @@ import TodoIndexItemContainer from "./TodoIndexItemContainer";
 export default function TodoIndex({ todos, fetchTodos }) {
   useEffect(() => {
     fetchTodos();
-  }, []);
+  }, [fetchTodos]);
 
   const todoItems = todos.map(todo => (
     <TodoIndexItemContainer todo={todo} key={todo._id} />
