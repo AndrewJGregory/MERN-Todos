@@ -10,6 +10,7 @@ router.get("/", index);
 router.get("/user/:user_id", userShow);
 router.get("/:id", show);
 router.post("/", passport.authenticate("jwt", { session: false }), create);
+router.patch("/:id", passport.authenticate("jwt", { session: false }), update);
 
 function index(req, res) {
   Todo.find()
@@ -56,4 +57,16 @@ function create(req, res) {
   newTodo.save().then(todo => res.json(todo));
 }
 
+async function update(req, res) {
+  const { errors, isValid } = validateTodoInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  let todo = await Todo.findById(req.params.id);
+  todo.content = req.body.content;
+  todo = await todo.save();
+  res.json(normalize([todo]));
+}
 module.exports = router;
