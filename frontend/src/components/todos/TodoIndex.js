@@ -1,3 +1,5 @@
+import "../root.css";
+
 import {
   Button,
   Form,
@@ -19,6 +21,7 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
   const [selectedTodo, setSelectedTodo] = useState({ content: "", id: null });
   const [newContent, setNewContent] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
     fetchTodos();
@@ -34,15 +37,23 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
 
   function handleEdit(e) {
     setLoading(true);
-    editTodo(selectedTodo._id, newContent).then(todo => {
-      console.log(todo);
-      setLoading(false);
-      setSelectedTodo(todo);
-    });
+    editTodo(selectedTodo._id, newContent).then(
+      editedTodo => {
+        setLoading(false);
+        setErrMsg("");
+        setSelectedTodo(editedTodo);
+      },
+      ({ response }) => {
+        setLoading(false);
+        setErrMsg(response.data.content);
+      },
+    );
   }
+
   const todoItems = todos.map(todo => (
     <TodoIndexItemContainer todo={todo} key={todo._id} />
   ));
+
   return (
     <>
       <Modal isOpen={isModalOpen}>
@@ -65,6 +76,8 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
           </Form>
         </ModalBody>
         <ModalFooter>
+          <p className="error">{errMsg}</p>
+          <br />
           <Button color="primary" onClick={handleEdit} disabled={isLoading}>
             Edit
           </Button>

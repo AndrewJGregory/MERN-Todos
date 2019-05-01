@@ -10,8 +10,13 @@ export const fetchTodos = () => dispatch =>
   TodoUtil.fetchTodos().then(({ data }) => dispatch(receiveTodos(data)));
 
 export const editTodo = (id, content) => dispatch =>
-  TodoUtil.editTodo(id, content).then(({ data }) => {
-    dispatch(receiveTodo(data));
-    const editedTodo = Object.values(data)[0];
-    return editedTodo;
-  });
+  TodoUtil.editTodo(id, content).then(
+    res => {
+      dispatch(receiveTodo(res.data));
+      const editedTodo = Object.values(res.data)[0];
+      return editedTodo;
+    },
+    err => {
+      throw err;
+    },
+  );
