@@ -1,4 +1,5 @@
 import "./session_form.css";
+import "../root.css";
 
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import React, { useEffect, useState } from "react";
@@ -59,7 +60,7 @@ export default function SessionForm({
             />
           </Label>
         </FormGroup>
-        <p className="session-form__error">{errors.username}</p>
+        <p className="error">{errors.username}</p>
         <FormGroup>
           <Label>
             Password
@@ -74,7 +75,7 @@ export default function SessionForm({
             />
           </Label>
         </FormGroup>
-        <p className="session-form__error">{errors.password}</p>
+        <p className="error">{errors.password}</p>
         <Button disabled={isLoading}>{btnText}</Button>
         <br />
         <Link to={`/${otherUrl}`}>{otherBtnText}</Link>
