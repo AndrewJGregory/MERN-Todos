@@ -22,6 +22,7 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
   const [newContent, setNewContent] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
   useEffect(() => {
     fetchTodos();
@@ -41,11 +42,13 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
       editedTodo => {
         setLoading(false);
         setErrMsg("");
+        setSuccessMsg("Successfully edited!");
         setSelectedTodo(editedTodo);
       },
       ({ response }) => {
         setLoading(false);
         setErrMsg(response.data.content);
+        setSuccessMsg("");
       },
     );
   }
@@ -77,6 +80,7 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
         </ModalBody>
         <ModalFooter>
           <p className="error">{errMsg}</p>
+          <p className="success">{successMsg}</p>
           <br />
           <Button color="primary" onClick={handleEdit} disabled={isLoading}>
             Edit
