@@ -21,12 +21,12 @@ I love trying new technologies with a new project. Here are the new ones that I 
 ### Done
 
 - Sign up, sign in, log out
+- Edit a todo
 
 ### Next
 
 - Todo completion status
 - Create a todo
-- Edit a todo
 - Delete a todo
 
 ### Bonus
