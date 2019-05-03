@@ -27,11 +27,10 @@ export const signup = user => dispatch =>
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
       dispatch(receiveCurrentUser(jwt_decode(token)));
-      return "success";
     },
     err => {
       dispatch(receiveErrors(err.response.data));
-      return "fail";
+      throw err;
     },
   );
 
@@ -42,11 +41,10 @@ export const signin = user => dispatch =>
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
       dispatch(receiveCurrentUser(jwt_decode(token)));
-      return "success";
     },
     err => {
       dispatch(receiveErrors(err.response.data));
-      return "fail";
+      throw err;
     },
   );
 

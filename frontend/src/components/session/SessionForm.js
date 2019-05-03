@@ -32,14 +32,14 @@ export default function SessionForm({
     }
   }, [history]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    submit({ username, password }).then(res => {
-      if (res === "fail") {
-        setLoading(false);
-      }
-    });
+    try {
+      await submit({ username, password });
+    } catch {
+      setLoading(false);
+    }
   }
 
   return (
