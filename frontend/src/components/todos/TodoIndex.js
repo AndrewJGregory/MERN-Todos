@@ -36,21 +36,19 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
     }
   }
 
-  function handleEdit(e) {
+  async function handleEdit(e) {
     setLoading(true);
-    editTodo(selectedTodo._id, newContent).then(
-      editedTodo => {
-        setLoading(false);
-        setErrMsg("");
-        setSuccessMsg("Successfully edited!");
-        setSelectedTodo(editedTodo);
-      },
-      ({ response }) => {
-        setLoading(false);
-        setErrMsg(response.data.content);
-        setSuccessMsg("");
-      },
-    );
+    try {
+      const editedTodo = await editTodo(selectedTodo._id, newContent);
+      setLoading(false);
+      setErrMsg("");
+      setSuccessMsg("Successfully edited!");
+      setSelectedTodo(editedTodo);
+    } catch ({ response }) {
+      setLoading(false);
+      setErrMsg(response.data.content);
+      setSuccessMsg("");
+    }
   }
 
   function handleClose() {
