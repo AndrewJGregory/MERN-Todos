@@ -16,3 +16,8 @@ export const makeTodoUserSelector = () =>
     [userSelector, todoSelector],
     (users, todo) => Object.values(users).find(user => user._id === todo.user),
   );
+
+export const currentUserSelector = createSelector(
+  ({ session: { user } }) => user,
+  currentUser => currentUser,
+);
