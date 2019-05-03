@@ -53,13 +53,19 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
     );
   }
 
+  function handleClose() {
+    setSuccessMsg("");
+    setErrMsg("");
+    setNewContent("");
+  }
+
   const todoItems = todos.map(todo => (
     <TodoIndexItemContainer todo={todo} key={todo._id} />
   ));
 
   return (
     <>
-      <Modal isOpen={isModalOpen}>
+      <Modal isOpen={isModalOpen} onClosed={handleClose}>
         <ModalHeader>Edit a todo</ModalHeader>
         <ModalBody>
           Current todo content: {selectedTodo.content}
