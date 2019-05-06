@@ -34,4 +34,6 @@ app.use(passport.initialize());
 
 const port = process.env.PORT || 5000;
 
+// (async () => await seedDatabase())();
+
 app.listen(port, () => console.log(`server is running on port ${port}`));
