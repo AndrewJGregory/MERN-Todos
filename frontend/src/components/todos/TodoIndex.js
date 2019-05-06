@@ -98,7 +98,7 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
           </Button>
         </ModalFooter>
       </Modal>
-      <ul onClick={handleClick}>{todoItems}</ul>;
+      <ul onClick={handleClick}>{todoItems}</ul>
     </>
   );
 }
