@@ -23,19 +23,22 @@ export default function TodoIndex({ todos, fetchTodos, editTodo, deleteTodo }) {
   const [isLoading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     fetchTodos();
   }, [fetchTodos]);
 
-  function handleClick(e) {
+  async function handleClick(e) {
     const todoId = e.target.getAttribute("todoid");
     if (todoId) {
       setSelectedTodo(todos.find(todo => todo._id === todoId));
       if (e.target.innerText === "Edit") {
         setModal(true);
       } else {
-        deleteTodo(todoId);
+        setIsDeleting(true);
+        await deleteTodo(todoId);
+        setIsDeleting(false);
       }
     }
   }
@@ -62,7 +65,11 @@ export default function TodoIndex({ todos, fetchTodos, editTodo, deleteTodo }) {
   }
 
   const todoItems = todos.map(todo => (
-    <TodoIndexItemContainer todo={todo} key={todo._id} />
+    <TodoIndexItemContainer
+      todo={todo}
+      key={todo._id}
+      isDeleting={selectedTodo._id === todo._id && isDeleting}
+    />
   ));
 
   return (
