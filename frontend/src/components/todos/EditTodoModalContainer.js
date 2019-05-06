@@ -1,18 +1,17 @@
-import { deleteTodo, fetchTodos } from "../../actions/todo_actions.js";
-import { editingTodoSelector, todoArrSelector } from "../../util/selectors.js";
+import { editingTodoSelector, isModalOpenSelector } from "../../util/selectors";
 import { setEditingTodo, setModal } from "../../actions/ui_actions";
 
-import TodoIndex from "./TodoIndex.js";
+import EditTodoModal from "./EditTodoModal";
 import { connect } from "react-redux";
+import { editTodo } from "../../actions/todo_actions.js";
 
 const msp = state => ({
-  todos: todoArrSelector(state),
   editingTodo: editingTodoSelector(state),
+  isModalOpen: isModalOpenSelector(state),
 });
 
 const mdp = dispatch => ({
-  fetchTodos: () => dispatch(fetchTodos()),
-  deleteTodo: id => dispatch(deleteTodo(id)),
+  editTodo: (id, content) => dispatch(editTodo(id, content)),
   setEditingTodo: todo => dispatch(setEditingTodo(todo)),
   setModal: bool => dispatch(setModal(bool)),
 });
@@ -20,4 +19,4 @@ const mdp = dispatch => ({
 export default connect(
   msp,
   mdp,
-)(TodoIndex);
+)(EditTodoModal);

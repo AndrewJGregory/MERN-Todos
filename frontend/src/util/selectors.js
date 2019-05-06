@@ -21,3 +21,13 @@ export const currentUserSelector = createSelector(
   ({ session: { user } }) => user,
   currentUser => currentUser,
 );
+
+export const editingTodoSelector = createSelector(
+  ({ ui: { editingTodo } }) => editingTodo,
+  editingTodo => editingTodo,
+);
+
+export const isModalOpenSelector = createSelector(
+  ({ ui: { isModalOpen } }) => isModalOpen,
+  isModalOpen => isModalOpen,
+);
