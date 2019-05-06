@@ -22,12 +22,12 @@ I love trying new technologies with a new project. Here are the new ones that I 
 
 - Sign up, sign in, log out
 - Edit a todo
+- Delete a todo
 
 ### Next
 
 - Todo completion status
 - Create a todo
-- Delete a todo
 
 ### Bonus
 
