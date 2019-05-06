@@ -1,4 +1,8 @@
-import { editTodo, fetchTodos } from "../../actions/todo_actions.js";
+import {
+  deleteTodo,
+  editTodo,
+  fetchTodos,
+} from "../../actions/todo_actions.js";
 
 import TodoIndex from "./TodoIndex.js";
 import { connect } from "react-redux";
@@ -8,6 +12,7 @@ const msp = state => ({ todos: todoArrSelector(state) });
 const mdp = dispatch => ({
   fetchTodos: () => dispatch(fetchTodos()),
   editTodo: (id, content) => dispatch(editTodo(id, content)),
+  deleteTodo: id => dispatch(deleteTodo(id)),
 });
 
 export default connect(

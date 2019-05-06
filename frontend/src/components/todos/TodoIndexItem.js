@@ -5,13 +5,15 @@ import PropTypes from "prop-types";
 import React from "react";
 
 export default function TodoIndexItem({ todo, user, currentUserId }) {
-  const editBtn =
-    todo.user === currentUserId ? (
-      <Button todoid={todo._id}>Edit</Button>
-    ) : null;
+  let editBtn = null;
+  let deleteBtn = null;
+  if (todo.user === currentUserId) {
+    editBtn = <Button todoid={todo._id}>Edit</Button>;
+    deleteBtn = <Button todoid={todo._id}>Delete</Button>;
+  }
   return (
     <li className="todo">
-      {user.username} has to {todo.content} {editBtn}
+      {user.username} has to {todo.content} {editBtn} {deleteBtn}
     </li>
   );
 }

@@ -16,7 +16,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import TodoIndexItemContainer from "./TodoIndexItemContainer";
 
-export default function TodoIndex({ todos, fetchTodos, editTodo }) {
+export default function TodoIndex({ todos, fetchTodos, editTodo, deleteTodo }) {
   const [isModalOpen, setModal] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState({ content: "", id: null });
   const [newContent, setNewContent] = useState("");
@@ -32,7 +32,11 @@ export default function TodoIndex({ todos, fetchTodos, editTodo }) {
     const todoId = e.target.getAttribute("todoid");
     if (todoId) {
       setSelectedTodo(todos.find(todo => todo._id === todoId));
-      setModal(true);
+      if (e.target.innerText === "Edit") {
+        setModal(true);
+      } else {
+        deleteTodo(todoId);
+      }
     }
   }
 
@@ -107,4 +111,5 @@ TodoIndex.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTodos: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
 };

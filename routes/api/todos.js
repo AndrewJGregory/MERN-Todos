@@ -11,6 +11,11 @@ router.get("/user/:user_id", userShow);
 router.get("/:id", show);
 router.post("/", passport.authenticate("jwt", { session: false }), create);
 router.patch("/:id", passport.authenticate("jwt", { session: false }), update);
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  destroy,
+);
 
 function index(req, res) {
   Todo.find()
@@ -68,5 +73,16 @@ async function update(req, res) {
   todo.content = req.body.content;
   todo = await todo.save();
   res.json(normalize([todo]));
+}
+
+async function destroy(req, res) {
+  const result = await Todo.deleteOne({
+    _id: req.params.id,
+  });
+  if (result.deletedCount === 1) {
+    return res.json({ id: req.params.id });
+  } else {
+    return res.status(400).json({ error: "No todo found!" });
+  }
 }
 module.exports = router;
