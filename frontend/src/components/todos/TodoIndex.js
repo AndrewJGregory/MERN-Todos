@@ -20,7 +20,7 @@ export default function TodoIndex({ todos, fetchTodos, editTodo, deleteTodo }) {
   const [isModalOpen, setModal] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState({ content: "", id: null });
   const [newContent, setNewContent] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -44,15 +44,15 @@ export default function TodoIndex({ todos, fetchTodos, editTodo, deleteTodo }) {
   }
 
   async function handleEdit(e) {
-    setLoading(true);
+    setIsEditing(true);
     try {
       const editedTodo = await editTodo(selectedTodo._id, newContent);
-      setLoading(false);
+      setIsEditing(false);
       setErrMsg("");
       setSuccessMsg("Successfully edited!");
       setSelectedTodo(editedTodo);
     } catch ({ response }) {
-      setLoading(false);
+      setIsEditing(false);
       setErrMsg(response.data.content);
       setSuccessMsg("");
     }
@@ -87,7 +87,7 @@ export default function TodoIndex({ todos, fetchTodos, editTodo, deleteTodo }) {
                   value={newContent}
                   onChange={e => setNewContent(e.currentTarget.value)}
                   required
-                  disabled={isLoading}
+                  disabled={isEditing}
                 />
               </Label>
             </FormGroup>
@@ -97,13 +97,13 @@ export default function TodoIndex({ todos, fetchTodos, editTodo, deleteTodo }) {
           <p className="error">{errMsg}</p>
           <p className="success">{successMsg}</p>
           <br />
-          <Button color="primary" onClick={handleEdit} disabled={isLoading}>
+          <Button color="primary" onClick={handleEdit} disabled={isEditing}>
             Edit
           </Button>
           <Button
             color="secondary"
             onClick={() => setModal(false)}
-            disabled={isLoading}
+            disabled={isEditing}
           >
             Cancel
           </Button>
