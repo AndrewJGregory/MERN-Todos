@@ -13,7 +13,11 @@ export default function TodoIndexItem({
   let editBtn = null;
   let deleteBtn = null;
   if (todo.user === currentUserId) {
-    editBtn = <Button todoid={todo._id}>Edit</Button>;
+    editBtn = (
+      <Button disabled={isDeleting} todoid={todo._id}>
+        Edit
+      </Button>
+    );
     deleteBtn = (
       <Button disabled={isDeleting} todoid={todo._id}>
         Delete
