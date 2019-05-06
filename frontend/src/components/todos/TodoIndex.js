@@ -1,4 +1,5 @@
 import "../root.css";
+import "./todo_index.css";
 
 import React, { useEffect, useState } from "react";
 
@@ -41,7 +42,11 @@ export default function TodoIndex({
     />
   ));
 
-  return <ul onClick={handleClick}>{todoItems}</ul>;
+  return (
+    <ul className="todos-list" onClick={handleClick}>
+      {todoItems}
+    </ul>
+  );
 }
 
 TodoIndex.propTypes = {
