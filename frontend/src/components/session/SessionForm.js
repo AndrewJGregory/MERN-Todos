@@ -16,10 +16,12 @@ export default function SessionForm({
   otherUrl,
   errors,
   clearErrors,
+  demoLogin,
 }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const [isDemoLoginLoading, setDemoLoginLoading] = useState(false);
 
   useEffect(() => {
     clearErrors();
@@ -42,6 +44,13 @@ export default function SessionForm({
     }
   }
 
+  async function handleDemoLogin(e) {
+    e.preventDefault();
+    setDemoLoginLoading(true);
+    await demoLogin();
+    setDemoLoginLoading(false);
+  }
+  const isDisabled = isLoading || isDemoLoginLoading;
   return (
     <>
       <h1>Welcome to the MERN Todos App!</h1>
@@ -56,7 +65,7 @@ export default function SessionForm({
               placeholder="Username"
               autoComplete="username"
               required
-              disabled={isLoading}
+              disabled={isDisabled}
             />
           </Label>
         </FormGroup>
@@ -71,12 +80,16 @@ export default function SessionForm({
               placeholder="Password"
               autoComplete="current-password"
               required
-              disabled={isLoading}
+              disabled={isDisabled}
             />
           </Label>
         </FormGroup>
         <p className="error">{errors.password}</p>
-        <Button disabled={isLoading}>{btnText}</Button>
+        <Button disabled={isDisabled}>{btnText}</Button>
+        <br />
+        <Button disabled={isDisabled} onClick={handleDemoLogin}>
+          Demo Login
+        </Button>
         <br />
         <Link to={`/${otherUrl}`}>{otherBtnText}</Link>
       </Form>
@@ -93,4 +106,5 @@ SessionForm.propTypes = {
   history: PropTypes.object.isRequired,
   clearErrors: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  demoLogin: PropTypes.func.isRequired,
 };

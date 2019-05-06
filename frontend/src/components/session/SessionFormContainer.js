@@ -1,4 +1,9 @@
-import { receiveErrors, signin, signup } from "../../actions/session_actions";
+import {
+  demoLogin,
+  receiveErrors,
+  signin,
+  signup,
+} from "../../actions/session_actions";
 
 import SessionForm from "./SessionForm";
 import { connect } from "react-redux";
@@ -26,6 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     submit: user => dispatch(submit(user)),
     clearErrors: () => dispatch(receiveErrors({})),
+    demoLogin: () => dispatch(demoLogin()),
   };
 };
 
