@@ -47,9 +47,13 @@ export default function SessionForm({
   async function handleDemoLogin(e) {
     e.preventDefault();
     setDemoLoginLoading(true);
-    await demoLogin();
-    setDemoLoginLoading(false);
+    try {
+      await demoLogin();
+    } catch {
+      setDemoLoginLoading(false);
+    }
   }
+
   const isDisabled = isLoading || isDemoLoginLoading;
   return (
     <>
