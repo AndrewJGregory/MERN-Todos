@@ -12,8 +12,8 @@ const removeTodo = id => ({ type: REMOVE_TODO, id });
 export const fetchTodos = () => dispatch =>
   TodoUtil.fetchTodos().then(({ data }) => dispatch(receiveTodos(data)));
 
-export const editTodo = (id, content) => dispatch =>
-  TodoUtil.editTodo(id, content).then(
+export const editTodo = (id, editedTodo) => dispatch =>
+  TodoUtil.editTodo(id, editedTodo).then(
     res => {
       dispatch(receiveTodo(res.data));
       const editedTodo = Object.values(res.data)[0];

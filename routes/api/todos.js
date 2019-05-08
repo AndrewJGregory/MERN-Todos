@@ -63,16 +63,18 @@ function create(req, res) {
 }
 
 async function update(req, res) {
-  const { errors, isValid } = validateTodoInput(req.body);
-
+  const { errors, isValid } = validateTodoInput(req.body.todo);
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
-  let todo = await Todo.findById(req.params.id);
-  todo.content = req.body.content;
-  todo = await todo.save();
-  res.json(normalize([todo]));
+  const { content, complete } = req.body.todo;
+  const newTodo = await Todo.findByIdAndUpdate(
+    req.params.id,
+    { content, complete },
+    { new: true },
+  );
+  return res.json(normalize([newTodo]));
 }
 
 async function destroy(req, res) {

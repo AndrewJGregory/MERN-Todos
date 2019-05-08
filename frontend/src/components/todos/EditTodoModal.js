@@ -29,7 +29,10 @@ export default function EditTodoModal({
     setModal(true);
     setIsEditing(true);
     try {
-      const editedTodo = await editTodo(editingTodo._id, newContent);
+      const editedTodo = await editTodo(editingTodo._id, {
+        ...editingTodo,
+        content: newContent,
+      });
       setErrMsg("");
       setSuccessMsg("Successfully edited!");
       setEditingTodo(editedTodo);

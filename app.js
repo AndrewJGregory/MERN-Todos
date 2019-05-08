@@ -21,8 +21,9 @@ if (process.env.NODE_ENV === "production") {
   })();
 }
 
+// see: https://mongoosejs.com/docs/deprecations.html#-findandmodify-
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true, useFindAndModify: false })
   .then(() => console.log("Successfully connected to db"))
   .catch(err => console.log(err));
 
