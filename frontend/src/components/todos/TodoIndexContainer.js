@@ -5,8 +5,8 @@ import { setEditingTodo, setModal } from "../../actions/ui_actions";
 import TodoIndex from "./TodoIndex.js";
 import { connect } from "react-redux";
 
-const msp = state => ({
-  todos: todoArrSelector(state),
+const msp = (state, ownProps) => ({
+  todos: ownProps.todos || todoArrSelector(state),
   editingTodo: editingTodoSelector(state),
 });
 

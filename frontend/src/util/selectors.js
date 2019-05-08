@@ -31,3 +31,8 @@ export const isModalOpenSelector = createSelector(
   ({ ui: { isModalOpen } }) => isModalOpen,
   isModalOpen => isModalOpen,
 );
+
+export const getUserTodos = createSelector(
+  [allTodoSelector, (_, userId) => userId],
+  (todos, userId) => Object.values(todos).filter(todo => userId === todo.user),
+);
