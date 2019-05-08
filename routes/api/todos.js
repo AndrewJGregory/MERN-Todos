@@ -84,7 +84,10 @@ async function destroy(req, res) {
   if (result.deletedCount === 1) {
     return res.json({ id: req.params.id });
   } else {
-    return res.status(400).json({ error: "No todo found!" });
+    return res.status(400).json({
+      error:
+        "There was a problem deleting that todo. Please refresh your page.",
+    });
   }
 }
 module.exports = router;
