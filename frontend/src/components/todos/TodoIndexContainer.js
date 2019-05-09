@@ -4,10 +4,12 @@ import { setEditingTodo, setModal } from "../../actions/ui_actions";
 
 import TodoIndex from "./TodoIndex.js";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 const msp = (state, ownProps) => ({
   todos: ownProps.todos || todoArrSelector(state),
   editingTodo: editingTodoSelector(state),
+  url: ownProps.match.url,
 });
 
 const mdp = dispatch => ({
@@ -17,7 +19,9 @@ const mdp = dispatch => ({
   setModal: bool => dispatch(setModal(bool)),
 });
 
-export default connect(
-  msp,
-  mdp,
-)(TodoIndex);
+export default withRouter(
+  connect(
+    msp,
+    mdp,
+  )(TodoIndex),
+);
