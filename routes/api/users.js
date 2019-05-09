@@ -8,7 +8,10 @@ const passport = require("passport");
 const validateSignupInput = require("../../validation/signup");
 const validateSigninInput = require("../../validation/signin");
 
-router.post("/signup", (req, res) => {
+router.post("/signup", signup);
+router.post("/signin", signin);
+
+function signup(req, res) {
   const { username, password } = req.body;
   const { errors, isValid } = validateSignupInput({ username, password });
   if (!isValid) {
@@ -46,9 +49,9 @@ router.post("/signup", (req, res) => {
       });
     }
   });
-});
+}
 
-router.post("/signin", (req, res) => {
+function signin(req, res) {
   const { username, password } = req.body;
   const { errors, isValid } = validateSigninInput({ username, password });
   if (!isValid) {
@@ -76,17 +79,6 @@ router.post("/signin", (req, res) => {
       }
     });
   });
-});
-
-router.get(
-  "/current",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json({
-      id: req.user.id,
-      username: req.user.username,
-    });
-  },
-);
+}
 
 module.exports = router;
