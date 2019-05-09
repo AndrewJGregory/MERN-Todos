@@ -32,11 +32,13 @@ export const isModalOpenSelector = createSelector(
   isModalOpen => isModalOpen,
 );
 
+export const getUserByUsername = createSelector(
+  [userSelector, (_, username) => username],
+  (users, username) =>
+    Object.values(users).find(user => user.username === username),
+);
+
 export const getUserTodos = createSelector(
-  [allTodoSelector, userSelector, (_, username) => username],
-  (todos, users, username) => {
-    const userId = Object.values(users).find(user => user.username === username)
-      ._id;
-    return Object.values(todos).filter(todo => userId === todo.user);
-  },
+  [allTodoSelector, (_, userId) => userId],
+  (todos, userId) => Object.values(todos).filter(todo => userId === todo.user),
 );
