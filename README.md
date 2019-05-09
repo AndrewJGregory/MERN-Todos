@@ -28,10 +28,14 @@ I love trying new technologies with a new project. Here are the new ones that I 
 ### Next
 
 - Create a todo
+- User show page with corresponding todos
+- Timestamps for todos (most recent)
+- Filter by "Active" and "Completed"
 
 ### Bonus
 
-- "Like" other user's todos
+- "Like" other user's todos and comments
+- Comment on todos with full CRUD
 - Group todos in folders
 - Be able to move todos from one folder to another
 - Real time chatting (to get a sense of what the future holds for re-writing the backend of MessageMe)
