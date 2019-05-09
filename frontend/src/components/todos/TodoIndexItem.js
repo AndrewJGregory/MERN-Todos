@@ -47,7 +47,7 @@ export default function TodoIndexItem({
   }
   return (
     <li className="todo">
-      <Link to={`/users/${user._id}`}>{user.username}</Link> has to{" "}
+      <Link to={`/users/${user.username}`}>{user.username}</Link> has to{" "}
       {todo.content} {editBtn} {deleteBtn} {checkBox}
     </li>
   );

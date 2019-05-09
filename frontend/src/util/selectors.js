@@ -33,6 +33,10 @@ export const isModalOpenSelector = createSelector(
 );
 
 export const getUserTodos = createSelector(
-  [allTodoSelector, (_, userId) => userId],
-  (todos, userId) => Object.values(todos).filter(todo => userId === todo.user),
+  [allTodoSelector, userSelector, (_, username) => username],
+  (todos, users, username) => {
+    const userId = Object.values(users).find(user => user.username === username)
+      ._id;
+    return Object.values(todos).filter(todo => userId === todo.user);
+  },
 );

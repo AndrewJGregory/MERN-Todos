@@ -4,7 +4,7 @@ import { getUserTodos } from "../../util/selectors";
 import { withRouter } from "react-router-dom";
 
 const msp = (state, ownProps) => ({
-  todos: getUserTodos(state, ownProps.match.params.id),
+  todos: getUserTodos(state, ownProps.match.params.username),
 });
 
 export default withRouter(connect(msp)(UserShow));

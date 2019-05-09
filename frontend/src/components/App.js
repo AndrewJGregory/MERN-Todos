@@ -16,7 +16,7 @@ function App({ isLoggedIn }) {
       {isLoggedIn && <HeaderContainer />}
       <EditTodoModalContainer />
       <Switch>
-        <ProtectedRoute path="/users/:id" component={UserShowContainer} />
+        <ProtectedRoute path="/users/:username" component={UserShowContainer} />
         <ProtectedRoute path="/todos" component={TodoIndexContainer} />
         <AuthRoute path="/signin" component={SessionFormContainer} />
         <AuthRoute path="/signup" component={SessionFormContainer} />
