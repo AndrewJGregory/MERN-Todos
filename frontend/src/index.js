@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -13,7 +13,10 @@ let store;
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
   const user = jwt_decode(localStorage.jwtToken);
-  const preloadedState = { session: { isAuthenticated: true, user } };
+  const preloadedState = {
+    session: { isAuthenticated: true, user },
+    users: { [user.id]: { username: user.name, _id: user.id } },
+  };
   store = configureStore(preloadedState);
   const currentTime = Date.now() / 1000;
   if (user.exp < currentTime) {

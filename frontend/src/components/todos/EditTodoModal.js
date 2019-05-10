@@ -25,7 +25,8 @@ export default function EditTodoModal({
   const [successMsg, setSuccessMsg] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
-  async function handleEdit() {
+  async function handleEdit(e) {
+    e.preventDefault();
     setModal(true);
     setIsEditing(true);
     try {

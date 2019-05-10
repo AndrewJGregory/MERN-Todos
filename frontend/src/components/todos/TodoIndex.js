@@ -14,6 +14,7 @@ export default function TodoIndex({
   setEditingTodo,
   setModal,
   editingTodo,
+  url,
 }) {
   const DELETE_SUCCESS_MSG = "Todo successfully deleted!";
 
@@ -23,8 +24,8 @@ export default function TodoIndex({
   const [alertType, setAlertType] = useState("");
 
   useEffect(() => {
-    fetchTodos();
-  }, [fetchTodos]);
+    if (url === "/todos") fetchTodos();
+  }, [fetchTodos, url]);
 
   async function handleClick(e) {
     const todoId = e.target.getAttribute("todoid");
@@ -81,4 +82,5 @@ TodoIndex.propTypes = {
   editingTodo: PropTypes.object.isRequired,
   setEditingTodo: PropTypes.func.isRequired,
   setModal: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
 };

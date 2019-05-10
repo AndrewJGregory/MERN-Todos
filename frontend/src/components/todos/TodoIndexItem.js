@@ -3,6 +3,7 @@ import "./todo_index_item.css";
 import React, { useState } from "react";
 
 import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export default function TodoIndexItem({
@@ -46,7 +47,8 @@ export default function TodoIndexItem({
   }
   return (
     <li className="todo">
-      {user.username} has to {todo.content} {editBtn} {deleteBtn} {checkBox}
+      <Link to={`/users/${user.username}`}>{user.username}</Link> has to{" "}
+      {todo.content} {editBtn} {deleteBtn} {checkBox}
     </li>
   );
 }
