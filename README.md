@@ -24,13 +24,14 @@ I love trying new technologies with a new project. Here are the new ones that I 
 - Edit a todo
 - Delete a todo
 - Todo completion status
+- User show page with corresponding todos
 
 ### Next
 
 - Create a todo
-- User show page with corresponding todos
 - Timestamps for todos (most recent)
 - Filter by "Active" and "Completed"
+- Add an [error boundary](https://reactjs.org/docs/error-boundaries.html)
 
 ### Bonus
 
