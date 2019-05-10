@@ -1,6 +1,7 @@
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 
 import EditTodoModalContainer from "./todos/EditTodoModalContainer";
+import ErrorBoundary from "./ErrorBoundary";
 import HeaderContainer from "./nav/HeaderContainer";
 import React from "react";
 import SessionFormContainer from "./session/SessionFormContainer";
@@ -12,17 +13,22 @@ import { currentUserSelector } from "../util/selectors";
 
 function App({ isLoggedIn }) {
   return (
-    <>
-      {isLoggedIn && <HeaderContainer />}
-      <EditTodoModalContainer />
-      <Switch>
-        <ProtectedRoute path="/users/:username" component={UserShowContainer} />
-        <ProtectedRoute path="/todos" component={TodoIndexContainer} />
-        <AuthRoute path="/signin" component={SessionFormContainer} />
-        <AuthRoute path="/signup" component={SessionFormContainer} />
-        <AuthRoute path="/" component={SessionFormContainer} />
-      </Switch>
-    </>
+    <ErrorBoundary>
+      <>
+        {isLoggedIn && <HeaderContainer />}
+        <EditTodoModalContainer />
+        <Switch>
+          <ProtectedRoute
+            path="/users/:username"
+            component={UserShowContainer}
+          />
+          <ProtectedRoute path="/todos" component={TodoIndexContainer} />
+          <AuthRoute path="/signin" component={SessionFormContainer} />
+          <AuthRoute path="/signup" component={SessionFormContainer} />
+          <AuthRoute path="/" component={SessionFormContainer} />
+        </Switch>
+      </>
+    </ErrorBoundary>
   );
 }
 
