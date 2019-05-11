@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const users = require("./routes/api/users");
 const todos = require("./routes/api/todos");
+const emails = require("./routes/api/emails");
 const passport = require("passport");
 const path = require("path");
 const seedDatabase = require("./config/seeds");
@@ -31,6 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/api/users", users);
 app.use("/api/todos", todos);
+app.use("/api/emails", emails);
 app.use(passport.initialize());
 
 const port = process.env.PORT || 5000;
