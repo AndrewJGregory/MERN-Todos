@@ -7,7 +7,6 @@ export default class ErrorBoundary extends Component {
   state = { hasError: false };
 
   static getDerivedStateFromError(e) {
-    console.log(e);
     // e is the caught error from below in children
     // this function should return a value to be used as the new state
     return { hasError: true };
