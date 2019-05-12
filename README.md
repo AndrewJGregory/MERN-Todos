@@ -25,7 +25,7 @@ I love trying new technologies with a new project. Here are the new ones that I 
 - Delete a todo
 - Todo completion status
 - User show page with corresponding todos
-- Add an [error boundary](https://reactjs.org/docs/error-boundaries.html), [complete with displaying a fallback UI](https://github.com/AndrewJGregory/MERN-Todos/blob/master/frontend/src/components/ErrorBoundary.js) _and_ [emailing myself an error report](https://github.com/AndrewJGregory/MERN-Todos/blob/master/routes/api/emails.js).
+- Add an [error boundary](https://reactjs.org/docs/error-boundaries.html), [complete with displaying a fallback UI](https://github.com/AndrewJGregory/MERN-Todos/blob/master/frontend/src/components/ErrorBoundary.js) _and_ [emailing myself an error report](https://github.com/AndrewJGregory/MERN-Todos/blob/master/routes/api/emails.js). Unfortunately, the stack trace is minified in production but there seems to be [no easy solution](https://github.com/facebook/create-react-app/issues/3753).
 
 ### Next
 
