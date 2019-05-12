@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import TodoIndexContainer from "../todos/TodoIndexContainer";
 
 export default function UserShow({ todos, fetchUserTodos, user }) {
-  todos["test"]();
   useEffect(() => {
     fetchUserTodos(user.username);
   }, [fetchUserTodos, user.username]);
