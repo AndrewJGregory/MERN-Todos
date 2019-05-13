@@ -15,6 +15,7 @@ I love trying new technologies with a new project. Here are the new ones that I 
 - [Node](https://nodejs.org), [MongoDB](https://www.mongodb.com/), [Express](https://expressjs.com/) to gain knowledge of these rapidly growing technologies
 - [reselect](https://github.com/reduxjs/reselect) to memoize redux selectors
 - [BEM](https://css-tricks.com/bem-101/) to have some logic of how I name my CSS classes, instead of picking what I think sounds right
+- [React Strict Mode](https://reactjs.org/docs/strict-mode.html)
 
 ## MVPs
 
