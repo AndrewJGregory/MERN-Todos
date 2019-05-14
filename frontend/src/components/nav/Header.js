@@ -1,3 +1,5 @@
+import "./header.css";
+
 import { Button, Navbar, NavbarBrand } from "reactstrap";
 
 import PropTypes from "prop-types";
@@ -7,7 +9,9 @@ export default function Header({ logout, setCreateModal }) {
   return (
     <Navbar>
       <NavbarBrand href="/">The todo app built with MERN</NavbarBrand>
-      <Button onClick={() => setCreateModal(true)}>Create Todo</Button>
+      <Button className="create-todo-btn" onClick={() => setCreateModal(true)}>
+        Create Todo
+      </Button>
       <Button onClick={logout}>Logout</Button>
     </Navbar>
   );
