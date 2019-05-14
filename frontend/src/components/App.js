@@ -1,6 +1,7 @@
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import React, { StrictMode } from "react";
 
+import CreateTodoModalContainer from "./todos/CreateTodoModalContainer";
 import EditTodoModalContainer from "./todos/EditTodoModalContainer";
 import ErrorBoundary from "./ErrorBoundary";
 import HeaderContainer from "./nav/HeaderContainer";
@@ -18,6 +19,7 @@ function App({ isLoggedIn }) {
         <>
           {isLoggedIn && <HeaderContainer />}
           <EditTodoModalContainer />
+          <CreateTodoModalContainer />
           <Switch>
             <ProtectedRoute
               path="/users/:username"

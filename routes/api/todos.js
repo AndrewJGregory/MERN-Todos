@@ -48,18 +48,18 @@ function userShow(req, res) {
 }
 
 function create(req, res) {
-  const { errors, isValid } = validateTodoInput(req.body);
+  const { errors, isValid } = validateTodoInput(req.body.todo);
 
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
   const newTodo = new Todo({
-    content: req.body.content,
-    user: req.user.id,
+    content: req.body.todo.content,
+    user: req.body.todo.user.id,
   });
 
-  newTodo.save().then(todo => res.json(todo));
+  newTodo.save().then(todo => res.json(normalize([todo])));
 }
 
 async function update(req, res) {

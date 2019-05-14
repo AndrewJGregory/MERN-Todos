@@ -31,3 +31,8 @@ export const deleteTodo = id => dispatch =>
       throw err;
     },
   );
+
+export const createTodo = todo => dispatch =>
+  TodoUtil.createTodo(todo).then(({ data: todo }) =>
+    dispatch(receiveTodo(todo)),
+  );
