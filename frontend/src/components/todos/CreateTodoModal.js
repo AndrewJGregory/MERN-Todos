@@ -48,7 +48,7 @@ export default function CreateTodoModal({
 
   return (
     <Modal isOpen={isCreateModalOpen} onClosed={handleClose}>
-      <ModalHeader>Edit a todo</ModalHeader>
+      <ModalHeader>Create a todo</ModalHeader>
       <ModalBody>
         <Form>
           <FormGroup>
