@@ -47,10 +47,9 @@ function signup(req, res) {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => {
-              const payload = { name: user.username, id: user.id };
+            .then(({ username, _id }) => {
               jwt.sign(
-                payload,
+                { username, _id },
                 keys.secretOrKey,
                 { expiresIn: 3600 },
                 (err, token) => {
@@ -79,7 +78,7 @@ function signin(req, res) {
     }
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        const payload = { name: user.username, id: user.id };
+        const payload = { username: user.username, _id: user.id };
         jwt.sign(
           payload,
           keys.secretOrKey,
