@@ -22,6 +22,7 @@ I love trying new technologies with a new project. Here are the new ones that I 
 ### Done
 
 - Sign up, sign in, log out
+- Create a todo
 - Edit a todo
 - Delete a todo
 - Todo completion status
@@ -30,7 +31,6 @@ I love trying new technologies with a new project. Here are the new ones that I 
 
 ### Next
 
-- Create a todo
 - Timestamps for todos (most recent)
 - Filter by "Active" and "Completed"
 
